@@ -1,16 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:odont/data/DAOs/patientsDao.dart';
 import 'package:odont/data/data-models/patientModel.dart';
+import 'package:odont/screens/attent-patient-screen/attend-patient-dashboard/attendPatientDashboard.dart';
 
-import 'attend-patient-dashboard/attendPatientDashboard.dart';
-
-class AttendPatientPhone extends StatefulWidget {
+class AttendPatientDesktop extends StatefulWidget {
   @override
-  _AttendPatientPhoneState createState() => _AttendPatientPhoneState();
+  _AttendPatientDesktopState createState() => _AttendPatientDesktopState();
 }
 
-class _AttendPatientPhoneState extends State<AttendPatientPhone> {
+class _AttendPatientDesktopState extends State<AttendPatientDesktop> {
   String? currentSearch;
 
   Future<void> showPatientSelectionDialog(Patient patient) async {

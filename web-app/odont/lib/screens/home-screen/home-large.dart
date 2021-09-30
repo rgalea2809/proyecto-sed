@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:odont/custom-widgets/DashboardCard.dart';
+import 'package:odont/screens/attent-patient-screen/attendPatient.dart';
 
 class HomeLarge extends StatefulWidget {
   @override
@@ -24,7 +25,8 @@ class _HomeLargeState extends State<HomeLarge> {
                 DashboardCard(
                     title: "Atender Paciente",
                     onTapped: () {
-                      print("Tapepd atender");
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => AttendPatient()));
                     },
                     aspectRatio: aspectRatio),
                 DashboardCard(

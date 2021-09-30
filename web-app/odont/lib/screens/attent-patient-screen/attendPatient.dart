@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:odont/screens/attent-patient-screen/attendPatient-large.dart';
 import 'package:odont/screens/attent-patient-screen/attendPatient-phone.dart';
 
 class AttendPatient extends StatefulWidget {
@@ -22,7 +23,7 @@ class _AttendPatientState extends State<AttendPatient> {
               // Phone size
               return AttendPatientPhone();
             } else {
-              return Container();
+              return AttendPatientDesktop();
             }
           },
         ),
