@@ -108,6 +108,9 @@ router.get("/:patientId", (req, res, next) => {
 });
 
 router.patch("/:patientId", (req, res, next) => {
+	// Patching syntax
+	// {"propName": "sex", "value": "Masc"}
+
 	const id = req.params.patientId;
 	const updateOps = {};
 
@@ -118,7 +121,7 @@ router.patch("/:patientId", (req, res, next) => {
 		console.log(ops.value);
 	}
 
-	Product.updateOne({ _id: id }, { $set: updateOps })
+	Patient.updateOne({ _id: id }, { $set: updateOps })
 		.exec()
 		.then((result) => {
 			res.status(200).json({
