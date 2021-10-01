@@ -3,29 +3,28 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const checkAuth = require("../middleware/check-auth");
 
-const Patient = require("../models/patient");
+const Treatment = require("../models/treatment");
 
 router.get("/", checkAuth, (req, res, next) => {
-	Patient.find()
+	Treatment.find()
 		.exec()
 		.then((docs) => {
 			const response = {
 				count: docs.length,
-				patients: docs.map((doc) => {
+				treatments: docs.map((doc) => {
 					return {
-						name: doc.name,
-						lastName: doc.lastName,
-						_id: doc._id,
-						birthDate: doc.birthDate,
-						weight: doc.weight,
-						phone: doc.phone,
-						email: doc.email,
-						medicalConditions: doc.medicalConditions,
-						sex: doc.sex,
+						id: doc._id,
+						treatmentId: doc._id,
+						doctorId: doc.doctorId,
+						patientId: doc.patientId,
+						dateOfCreation: doc.dateOfCreation,
+						appointments: doc.appointments,
+						totalCost: doc.totalCost,
+						payed: doc.payed,
 
 						request: {
 							type: "GET",
-							url: "http://localhost:3000/patients/" + doc._id,
+							url: "http://localhost:3000/treatments/" + doc._id,
 						},
 					};
 				}),
@@ -47,31 +46,29 @@ router.get("/", checkAuth, (req, res, next) => {
 });
 
 router.post("/", checkAuth, (req, res, next) => {
-	const patient = new Patient({
+	const treatment = new Treatment({
 		_id: new mongoose.Types.ObjectId(),
-		name: req.body.name,
-		lastName: req.body.lastName,
-		birthDate: req.body.birthDate,
-		weight: req.body.weight,
-		sex: req.body.sex,
-		medicalConditions: req.body.medicalConditions,
-		email: req.body.email,
-		phone: req.body.phone,
+		doctorId: req.body.doctorId,
+		patientId: req.body.patientId,
+		dateOfCreation: req.body.dateOfCreation,
+		appointments: req.body.appointments,
+		totalCost: req.body.totalCost,
+		payed: req.body.payed,
 	});
 
-	patient
+	treatment
 		.save()
 		.then((result) => {
 			console.log(result);
 			res.status(201).json({
-				message: "Created Patient successfully",
-				createdProduct: {
-					name: result.name,
-					lastName: result.lastName,
+				message: "Created Treatment successfully",
+				createdTreatment: {
+					id: result._id,
+					treatmentId: result._id,
 					_id: result._id,
 					request: {
 						type: "GET",
-						url: "http://localhost:3000/patients/" + result._id,
+						url: "http://localhost:3000/treatments/" + result._id,
 					},
 				},
 			});
@@ -82,20 +79,20 @@ router.post("/", checkAuth, (req, res, next) => {
 		});
 });
 
-router.get("/:patientId", checkAuth, (req, res, next) => {
-	const id = req.params.patientId;
+router.get("/:treatmentId", checkAuth, (req, res, next) => {
+	const id = req.params.treatmentId;
 
-	Patient.findById(id)
+	Treatment.findById(id)
 		.exec()
 		.then((doc) => {
 			console.log("From database ", doc);
 			if (doc) {
 				res.status(200).json({
-					patient: doc,
+					treatment: doc,
 					request: {
 						type: "GET",
-						description: "Get certain patient",
-						url: "http://localhost:3000/patients/id",
+						description: "Get certain treatment",
+						url: "http://localhost:3000/treatments/" + id,
 					},
 				});
 			} else {
@@ -108,11 +105,11 @@ router.get("/:patientId", checkAuth, (req, res, next) => {
 		});
 });
 
-router.patch("/:patientId", checkAuth, (req, res, next) => {
+router.patch("/:treatmentId", checkAuth, (req, res, next) => {
 	// Patching syntax
 	// {"propName": "sex", "value": "Masc"}
 
-	const id = req.params.patientId;
+	const id = req.params.treatmentId;
 	const updateOps = {};
 
 	console.log(req.body);
@@ -122,14 +119,14 @@ router.patch("/:patientId", checkAuth, (req, res, next) => {
 		console.log(ops.value);
 	}
 
-	Patient.updateOne({ _id: id }, { $set: updateOps })
+	Treatment.updateOne({ _id: id }, { $set: updateOps })
 		.exec()
 		.then((result) => {
 			res.status(200).json({
-				message: "Updated patient",
+				message: "Updated treatment",
 				request: {
 					type: "PATCH",
-					url: "http://localhost:3000/patients/" + id,
+					url: "http://localhost:3000/treatments/" + id,
 				},
 			});
 		})
@@ -138,16 +135,16 @@ router.patch("/:patientId", checkAuth, (req, res, next) => {
 		});
 });
 
-router.delete("/:patientId", checkAuth, (req, res, next) => {
-	const id = req.params.patientId;
-	Patient.remove({ _id: id })
+router.delete("/:treatmentId", checkAuth, (req, res, next) => {
+	const id = req.params.treatmentId;
+	Treatment.remove({ _id: id })
 		.exec()
 		.then((result) => {
 			res.status(200).json({
-				message: "Patient Deleted",
+				message: "Treatment Deleted",
 				request: {
 					type: "DELETE",
-					url: "http://localhost:300/patients/" + id,
+					url: "http://localhost:300/treatments/" + id,
 				},
 			});
 		})
