@@ -8,6 +8,10 @@ const treatmentSchema = mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	treatmentName: {
+		type: String,
+		required: true,
+	},
 	dateOfCreation: {
 		type: Date,
 		required: true,
@@ -17,8 +21,6 @@ const treatmentSchema = mongoose.Schema({
 			type: String,
 		},
 	],
-	totalCost: { type: Decimal128, required: true },
-	payed: { type: Decimal128, required: true },
 });
 
 module.exports = mongoose.model("Treatment", treatmentSchema);

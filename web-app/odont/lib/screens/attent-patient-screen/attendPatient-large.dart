@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:odont/data/DAOs/patientsDao.dart';
+import 'package:odont/data/changeNotifiers/doctorNotifier.dart';
 import 'package:odont/data/data-models/patientModel.dart';
 import 'package:odont/screens/attent-patient-screen/attend-patient-dashboard/attendPatientDashboard.dart';
+import 'package:provider/provider.dart';
 
 class AttendPatientDesktop extends StatefulWidget {
   @override
@@ -143,7 +145,11 @@ class _AttendPatientDesktopState extends State<AttendPatientDesktop> {
             Flexible(
               child: hasSearchedPatient()
                   ? FutureBuilder(
-                      future: PatientsDAO.getMatchingPatients(currentSearch!),
+                      future: PatientsDAO.getMatchingPatients(
+                          currentSearch!,
+                          Provider.of<DoctorNotifier>(context)
+                              .currentDoctor!
+                              .token),
                       builder:
                           (context, AsyncSnapshot<List<Patient>> snapshot) {
                         if (snapshot.hasError) {

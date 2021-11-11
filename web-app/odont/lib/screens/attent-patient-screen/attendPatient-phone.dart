@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:odont/data/DAOs/patientsDao.dart';
+import 'package:odont/data/changeNotifiers/doctorNotifier.dart';
 import 'package:odont/data/data-models/patientModel.dart';
+import 'package:provider/provider.dart';
 
 import 'attend-patient-dashboard/attendPatientDashboard.dart';
 
@@ -144,7 +146,11 @@ class _AttendPatientPhoneState extends State<AttendPatientPhone> {
             Flexible(
               child: hasSearchedPatient()
                   ? FutureBuilder(
-                      future: PatientsDAO.getMatchingPatients(currentSearch!),
+                      future: PatientsDAO.getMatchingPatients(
+                          currentSearch!,
+                          Provider.of<DoctorNotifier>(context)
+                              .currentDoctor!
+                              .token),
                       builder:
                           (context, AsyncSnapshot<List<Patient>> snapshot) {
                         if (snapshot.hasError) {

@@ -53,10 +53,7 @@ router.post("/", checkAuth, (req, res, next) => {
 		doctorId: req.body.doctorId,
 		patientId: req.body.patientId,
 		date: req.body.date,
-		appointmentType: req.body.appointmentType,
-		medicine: req.body.medicine,
 		info: req.body.info,
-		treatmentId: req.body.treatmentId,
 	});
 
 	appointment

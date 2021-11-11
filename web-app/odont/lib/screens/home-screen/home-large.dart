@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:odont/custom-widgets/DashboardCard.dart';
+import 'package:odont/data/changeNotifiers/doctorNotifier.dart';
 import 'package:odont/screens/attent-patient-screen/attendPatient.dart';
+import 'package:provider/provider.dart';
 
 class HomeLarge extends StatefulWidget {
   @override
@@ -20,6 +22,13 @@ class _HomeLargeState extends State<HomeLarge> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Center(
+              child: Consumer<DoctorNotifier>(
+                builder: (context, doctor, child) {
+                  return Text("Bienvenido Dr. ${doctor.doctor?.name}");
+                },
+              ),
+            ),
             Row(
               children: [
                 DashboardCard(
@@ -40,7 +49,7 @@ class _HomeLargeState extends State<HomeLarge> {
             Row(
               children: [
                 DashboardCard(
-                    title: "Ver Registro de Pacientes",
+                    title: "Registro de Pacientes",
                     onTapped: () {
                       print("Tapepd pacientes");
                     },

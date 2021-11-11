@@ -12,15 +12,6 @@ const appointmentSchema = mongoose.Schema({
 		type: Date,
 		required: true,
 	},
-	appointmentType: {
-		type: String,
-		required: true,
-	},
-	medicine: [
-		{
-			type: String,
-		},
-	],
 	info: {
 		type: String,
 		required: true,

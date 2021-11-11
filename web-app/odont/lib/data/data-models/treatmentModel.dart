@@ -7,8 +7,6 @@ class Treatment {
     required this.patientId,
     this.appointments,
     required this.dateOfCreation,
-    required this.payed,
-    required this.totalCostOfTreatment,
     required this.treatmentName,
   });
   String treatmentId;
@@ -17,6 +15,4 @@ class Treatment {
   String treatmentName;
   DateTime dateOfCreation;
   List<Appointment>? appointments;
-  double totalCostOfTreatment;
-  double payed;
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:odont/data/DAOs/userDAO.dart';
 import 'package:odont/screens/home-screen/home-large.dart';
 import 'package:odont/screens/home-screen/home-phone.dart';
+import 'package:odont/screens/login-screen/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
   final String id = "home-screen";
@@ -44,9 +46,12 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               title: const Text('Cerrar Sesión'),
-              onTap: () {
-                // Update the state of the app.
-                // ...
+              onTap: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                await prefs.setBool("isLoggedIn", false);
+                await prefs.remove("token");
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (_) => LoginScreen()));
               },
             ),
           ],

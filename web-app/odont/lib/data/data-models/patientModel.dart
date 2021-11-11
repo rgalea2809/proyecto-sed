@@ -8,12 +8,12 @@ class Patient {
       required this.medicalConditions,
       required this.patientId,
       required this.sex,
-      required this.weigh});
+      required this.weight});
   String patientId;
   String name;
   String lastName;
   DateTime birthDate;
-  double weigh;
+  double weight;
   String sex;
   List<String> medicalConditions;
   String email;

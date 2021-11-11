@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:odont/base/constants.dart';
 import 'package:odont/data/DAOs/userDAO.dart';
+import 'package:odont/data/changeNotifiers/doctorNotifier.dart';
 import 'package:odont/data/data-models/userModel.dart';
 import 'package:odont/screens/home-screen/home.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreenLarge extends StatefulWidget {
   @override
@@ -85,10 +87,6 @@ class _LoginScreenLargeState extends State<LoginScreenLarge> {
               ElevatedButton(
                 onPressed: () async {
                   if (_loginFormKey.currentState!.validate()) {
-                    print("validated");
-                    print(_currentPassword);
-                    print(_currentEmail);
-
                     // check user login
                     User? loggedUser = await UserDAO.loginUser(
                         _currentEmail, _currentPassword);
@@ -97,6 +95,8 @@ class _LoginScreenLargeState extends State<LoginScreenLarge> {
                       Fluttertoast.showToast(
                           msg: "Error: Compruebe sus credenciales");
                     } else {
+                      Provider.of<DoctorNotifier>(context, listen: false)
+                          .setDoctor(loggedUser);
                       Navigator.pushReplacementNamed(context, HomeScreen().id);
                     }
                   }

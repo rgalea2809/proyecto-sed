@@ -19,8 +19,7 @@ router.get("/", checkAuth, (req, res, next) => {
 						patientId: doc.patientId,
 						dateOfCreation: doc.dateOfCreation,
 						appointments: doc.appointments,
-						totalCost: doc.totalCost,
-						payed: doc.payed,
+						treatmentName: doc.treatmentName,
 
 						request: {
 							type: "GET",
@@ -52,8 +51,6 @@ router.post("/", checkAuth, (req, res, next) => {
 		patientId: req.body.patientId,
 		dateOfCreation: req.body.dateOfCreation,
 		appointments: req.body.appointments,
-		totalCost: req.body.totalCost,
-		payed: req.body.payed,
 	});
 
 	treatment

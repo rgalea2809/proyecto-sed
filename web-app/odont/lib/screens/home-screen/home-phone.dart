@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:odont/custom-widgets/DashboardCard.dart';
+import 'package:odont/data/changeNotifiers/doctorNotifier.dart';
+import 'package:odont/screens/appointment-registry-screen/appointment_registry_menu.dart';
 import 'package:odont/screens/attent-patient-screen/attendPatient.dart';
+import 'package:odont/screens/patients-registry/patients-registry.dart';
+import 'package:provider/provider.dart';
 
 class HomeSmall extends StatefulWidget {
   @override
@@ -20,6 +24,13 @@ class _HomeSmallState extends State<HomeSmall> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Center(
+              child: Consumer<DoctorNotifier>(
+                builder: (context, doctor, child) {
+                  return Text("Bienvenido Dr. ${doctor.doctor?.name}");
+                },
+              ),
+            ),
             DashboardCard(
               title: "Atender Paciente",
               onTapped: () {
@@ -31,14 +42,18 @@ class _HomeSmallState extends State<HomeSmall> {
             DashboardCard(
               title: "Registro de Citas",
               onTapped: () {
-                print("Tapped Registro de Citas");
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => AppointmentRegistryMenu()));
               },
               aspectRatio: aspectRatio,
             ),
             DashboardCard(
-              title: "Ver Registro de Pacientes",
+              title: "Registro de Pacientes",
               onTapped: () {
-                print("Tapped Registro de Pacientes");
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => PatientsRegistry()));
               },
               aspectRatio: aspectRatio,
             ),

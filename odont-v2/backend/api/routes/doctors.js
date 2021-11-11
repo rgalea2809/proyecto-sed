@@ -14,7 +14,7 @@ router.get("/", (req, res, next) => {
 		.then((docs) => {
 			const response = {
 				count: docs.length,
-				patients: docs.map((doc) => {
+				doctors: docs.map((doc) => {
 					return {
 						name: doc.name,
 						lastName: doc.lastName,
@@ -127,13 +127,16 @@ router.post("/login", (req, res, next) => {
 							},
 							process.env.JWT_KEY,
 							{
-								expiresIn: "24h",
+								expiresIn: "8h",
 							}
 						);
-
+						console.log(doctor[0]);
 						return res.status(200).json({
-							message: "Auth Successful",
+							message: "Auth Correct",
 							token: token,
+							name: doctor[0].name,
+							lastName: doctor[0].lastName,
+							id: doctor[0]._id,
 						});
 					}
 					res.status(401).json({
