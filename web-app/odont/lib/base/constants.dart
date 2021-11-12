@@ -31,4 +31,4 @@ TextTheme kTextTheme = TextTheme(
 RegExp kEmailRegexString = RegExp(
     r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
 
-final String kBaseUrl = "http://192.168.101.11:3000";
+final String kBaseUrl = "http://localhost:3000";
