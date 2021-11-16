@@ -19008,7 +19008,7 @@ a92:function a92(a){this.a=a},
 a_Z(a,b){return A.ax7(a,b)},
 ax7(a,b){var s=0,r=A.S(t.y),q,p=2,o,n=[],m,l,k,j,i,h,g
 var $async$a_Z=A.M(function(c,d){if(c===1){o=d
-s=p}while(true)switch(s){case 0:i=A.iS("http://localhost:3000/patients/",0,null)
+s=p}while(true)switch(s){case 0:i=A.iS("http://localhost:80/api/patients/",0,null)
 h=null
 p=4
 l=t.N
@@ -19042,7 +19042,7 @@ a00(a){return A.ax9(a)},
 ax9(a7){var s=0,r=A.S(t.kv),q,p=2,o,n=[],m,l,k,j,i,h,g,f,e,d,c,b,a,a0,a1,a2,a3,a4,a5,a6
 var $async$a00=A.M(function(a9,b0){if(a9===1){o=b0
 s=p}while(true)switch(s){case 0:a3=A.b([],t.OG)
-a4=A.iS("http://localhost:3000/patients/",0,null)
+a4=A.iS("http://localhost:80/api/patients/",0,null)
 a5=null
 p=4
 g=t.N
@@ -19095,7 +19095,7 @@ return A.R($async$wN,r)},
 a04(a,b,c,d){return A.axa(a,b,c,d)},
 axa(a,b,c,d){var s=0,r=A.S(t.y),q,p=2,o,n=[],m,l,k,j,i,h,g
 var $async$a04=A.M(function(e,f){if(e===1){o=f
-s=p}while(true)switch(s){case 0:i=A.iS("http://localhost:3000/appointments/",0,null)
+s=p}while(true)switch(s){case 0:i=A.iS("http://localhost:80/api/appointments/",0,null)
 h=null
 p=4
 l=t.N
@@ -19129,7 +19129,7 @@ a0_(a){return A.ax8(a)},
 ax8(a){var s=0,r=A.S(t.ni),q,p=2,o,n=[],m,l,k,j,i,h,g,f,e,d,c,b
 var $async$a0_=A.M(function(a1,a2){if(a1===1){o=a2
 s=p}while(true)switch(s){case 0:e=A.b([],t.lZ)
-d=A.iS("http://localhost:3000/appointments/",0,null)
+d=A.iS("http://localhost:80/api/appointments/",0,null)
 c=null
 p=4
 g=t.N
@@ -20422,7 +20422,7 @@ throw A.c(A.bF("Invalid "+a+' "'+b+'": '+J.au_(r),J.akn(r),J.akm(r)))}else throw
 iT(a,b){return A.ayV(a,b)},
 ayV(a,b){var s=0,r=A.S(t.t6),q,p=2,o,n=[],m,l,k,j,i,h,g,f
 var $async$iT=A.M(function(c,d){if(c===1){o=d
-s=p}while(true)switch(s){case 0:h=A.iS("http://localhost:3000/doctors/login/",0,null)
+s=p}while(true)switch(s){case 0:h=A.iS("http://localhost:80/api/doctors/login/",0,null)
 g=null
 p=4
 l=t.N
