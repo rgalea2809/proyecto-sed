@@ -44,9 +44,9 @@ app.use((req, res, next) => {
 });
 
 //Routes
-app.use("/patients", patientRoutes);
-app.use("/doctors", doctorRoutes);
-app.use("/appointments", appointmentRoutes);
+app.use("/api/patients", patientRoutes);
+app.use("/api/doctors", doctorRoutes);
+app.use("/api/appointments", appointmentRoutes);
 
 //app.use("/orders", orderRoutes);
 
