@@ -7,6 +7,18 @@ class DoctorNotifier extends ChangeNotifier {
   String token = "";
   bool isSignedIn = false;
 
+  /// Internal, private state of the doctor.
+  String _baseUrl = "http://localhost:3000/api";
+
+  /// The current doctor signed in
+  String get baseUrl => _baseUrl;
+
+  /// set current [_baseUrl]
+  void setBaseUrl(String string) {
+    _baseUrl = string;
+    notifyListeners();
+  }
+
   /// The current doctor signed in
   User? get doctor => currentDoctor;
 

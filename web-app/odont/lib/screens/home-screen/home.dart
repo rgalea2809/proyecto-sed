@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:odont/data/DAOs/userDAO.dart';
-import 'package:odont/screens/home-screen/home-large.dart';
 import 'package:odont/screens/home-screen/home-phone.dart';
 import 'package:odont/screens/login-screen/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -64,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
               // Phone size
               return HomeSmall();
             } else {
-              return HomeLarge();
+              return HomeSmall();
             }
           },
         ),

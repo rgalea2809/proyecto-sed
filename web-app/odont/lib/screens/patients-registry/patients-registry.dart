@@ -115,7 +115,8 @@ class _PatientsRegistryState extends State<PatientsRegistry> {
                     bool createdPatient = await PatientsDAO.createPatient(
                         newPatient,
                         Provider.of<DoctorNotifier>(context, listen: false)
-                            .token);
+                            .token,
+                        context);
                     if (createdPatient) {
                       Fluttertoast.showToast(msg: "Paciente Creado");
                     } else {

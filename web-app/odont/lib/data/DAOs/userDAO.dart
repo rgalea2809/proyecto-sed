@@ -1,6 +1,9 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:odont/base/constants.dart';
+import 'package:odont/data/changeNotifiers/doctorNotifier.dart';
 import 'package:odont/data/data-models/userModel.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,8 +12,10 @@ class UserDAO {
   ///
   /// * If credentials match an existing user returns [User].
   /// * If credentials dont math any user it returns 'null'
-  static Future<User?> loginUser(String email, String password) async {
-    String url = "$kBaseUrl/doctors/login/";
+  static Future<User?> loginUser(
+      String email, String password, BuildContext context) async {
+    String url =
+        "${Provider.of<DoctorNotifier>(context, listen: false).baseUrl}/doctors/login/";
     var loginUrl = Uri.parse(url);
 
     var response;

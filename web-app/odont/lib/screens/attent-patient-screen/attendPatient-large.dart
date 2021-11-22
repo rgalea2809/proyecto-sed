@@ -149,7 +149,8 @@ class _AttendPatientDesktopState extends State<AttendPatientDesktop> {
                           currentSearch!,
                           Provider.of<DoctorNotifier>(context)
                               .currentDoctor!
-                              .token),
+                              .token,
+                          context),
                       builder:
                           (context, AsyncSnapshot<List<Patient>> snapshot) {
                         if (snapshot.hasError) {

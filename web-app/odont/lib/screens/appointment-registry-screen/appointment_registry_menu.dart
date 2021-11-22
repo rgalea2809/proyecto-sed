@@ -165,7 +165,8 @@ class _AppointmentRegistryMenuState extends State<AppointmentRegistryMenu> {
                                 currentSearch!,
                                 Provider.of<DoctorNotifier>(context)
                                     .currentDoctor!
-                                    .token),
+                                    .token,
+                                context),
                             builder: (context,
                                 AsyncSnapshot<List<Patient>> snapshot) {
                               if (snapshot.hasError) {

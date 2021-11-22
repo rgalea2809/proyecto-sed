@@ -1,15 +1,20 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
+import 'package:odont/data/changeNotifiers/doctorNotifier.dart';
 import 'package:odont/data/data-models/appointmentModel.dart';
 import 'package:odont/data/data-models/patientModel.dart';
 import 'package:http/http.dart' as http;
 import 'package:odont/base/constants.dart';
 import 'package:odont/data/data-models/treatmentModel.dart';
+import 'package:provider/provider.dart';
 
 class PatientsDAO {
   // Create new patient
-  static Future<bool> createPatient(Patient patient, String token) async {
-    String url = "$kBaseUrl/patients/";
+  static Future<bool> createPatient(
+      Patient patient, String token, BuildContext context) async {
+    String url =
+        "${Provider.of<DoctorNotifier>(context, listen: false).baseUrl}/patients/";
     var postAppointmentUrl = Uri.parse(url);
 
     var response;
@@ -41,9 +46,11 @@ class PatientsDAO {
 
   /// Returns all of the patients registered in the database
   ///
-  static Future<List<Patient>> getAllPatients(String token) async {
+  static Future<List<Patient>> getAllPatients(
+      String token, BuildContext context) async {
     List<Patient> retrievedPatients = [];
-    String url = "$kBaseUrl/patients/";
+    String url =
+        "${Provider.of<DoctorNotifier>(context, listen: false).baseUrl}/patients/";
     var getPatientsUrl = Uri.parse(url);
 
     var response;
@@ -89,8 +96,8 @@ class PatientsDAO {
   /// If String matches an existing patient adds it to the list
   /// Checks for name, email and phone number
   static Future<List<Patient>> getMatchingPatients(
-      String search, String token) async {
-    List<Patient> patients = await getAllPatients(token);
+      String search, String token, BuildContext context) async {
+    List<Patient> patients = await getAllPatients(token, context);
 
     List<Patient> matchingPatients = [];
 
@@ -107,8 +114,9 @@ class PatientsDAO {
 
   //Saves appointment to database
   static Future<bool> saveAppointment(Patient patient, String doctorId,
-      String appointmentInfo, String token) async {
-    String url = "$kBaseUrl/appointments/";
+      String appointmentInfo, String token, BuildContext context) async {
+    String url =
+        "${Provider.of<DoctorNotifier>(context, listen: false).baseUrl}/appointments/";
     var postAppointmentUrl = Uri.parse(url);
 
     var response;
@@ -135,9 +143,11 @@ class PatientsDAO {
   }
 
   //Get all appointments
-  static Future<List<Appointment>> getAllAppointments(String token) async {
+  static Future<List<Appointment>> getAllAppointments(
+      String token, BuildContext context) async {
     List<Appointment> retrievedAppointments = [];
-    String url = "$kBaseUrl/appointments/";
+    String url =
+        "${Provider.of<DoctorNotifier>(context, listen: false).baseUrl}/appointments/";
     var getAppointmentsUrl = Uri.parse(url);
 
     var response;
@@ -175,9 +185,9 @@ class PatientsDAO {
 
   //Gets all of the patients appointments
   static Future<List<Appointment>> getPatientAppointments(
-      Patient patient, String token) async {
+      Patient patient, String token, BuildContext context) async {
     print("GETTING APPOINTMENTS");
-    List<Appointment> appointments = await getAllAppointments(token);
+    List<Appointment> appointments = await getAllAppointments(token, context);
 
     List<Appointment> patientAppointments = [];
 
@@ -193,11 +203,10 @@ class PatientsDAO {
   //Deprecated
   // Returns the treatments tied to the [Patient]
   static Future<List<Treatment>> getPatientTreatments(
-    Patient patient,
-    String token,
-  ) async {
+      Patient patient, String token, BuildContext context) async {
     List<Treatment> retrievedTreatments = [];
-    String url = "$kBaseUrl/treatments/";
+    String url =
+        "${Provider.of<DoctorNotifier>(context, listen: false).baseUrl}/treatments/";
     var getTreatmentsUrl = Uri.parse(url);
 
     var response;

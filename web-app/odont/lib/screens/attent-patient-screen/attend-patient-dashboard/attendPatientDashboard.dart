@@ -40,8 +40,8 @@ class _AttendPatientDashboardState extends State<AttendPatientDashboard> {
                           .currentDoctor!
                           .doctorId,
                       consultaInfo,
-                      Provider.of<DoctorNotifier>(context, listen: false)
-                          .token);
+                      Provider.of<DoctorNotifier>(context, listen: false).token,
+                      context);
 
                   if (savedAppointment) {
                     Fluttertoast.showToast(msg: "Guardado Exitosamente");

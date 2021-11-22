@@ -18,7 +18,7 @@ class _AppointmentListState extends State<AppointmentList> {
   Future<List<Appointment>> getPatientAppointments() async {
     print("RETRIEVING DATA");
     List<Appointment> appointments = await PatientsDAO.getPatientAppointments(
-        widget.patient, Provider.of<DoctorNotifier>(context).token);
+        widget.patient, Provider.of<DoctorNotifier>(context).token, context);
     print("DONE");
     return appointments;
   }

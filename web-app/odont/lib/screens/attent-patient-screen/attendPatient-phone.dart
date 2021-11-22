@@ -150,7 +150,8 @@ class _AttendPatientPhoneState extends State<AttendPatientPhone> {
                           currentSearch!,
                           Provider.of<DoctorNotifier>(context)
                               .currentDoctor!
-                              .token),
+                              .token,
+                          context),
                       builder:
                           (context, AsyncSnapshot<List<Patient>> snapshot) {
                         if (snapshot.hasError) {
